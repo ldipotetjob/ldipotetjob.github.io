@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Pattern Matching">
+<meta itemprop="description" content="Some examples of patterns are:
+ The pattern ex: IOException matches all instances of class IOException, binding variable ex to the instance. The pattern Some(x) matches values of the form Some(v), binding x to the argument value v of the Some constructor. The pattern (x, _) matches pairs of values, binding x to the first component of the pair. The second component is matched with a wildcard pattern. The pattern x :: y :: xs matches lists of length ≥2, binding x to the list&rsquo;s first element, y to the list&rsquo;s second element, and xs to the remainder."><meta itemprop="datePublished" content="2019-07-01T11:36:33+08:00" />
+<meta itemprop="dateModified" content="2019-07-01T11:36:33+08:00" />
+<meta itemprop="wordCount" content="1132">
+<meta itemprop="keywords" content="Pattern Matching,spec 2.12," /><meta property="og:title" content="Pattern Matching" />
+<meta property="og:description" content="Some examples of patterns are:
+ The pattern ex: IOException matches all instances of class IOException, binding variable ex to the instance. The pattern Some(x) matches values of the form Some(v), binding x to the argument value v of the Some constructor. The pattern (x, _) matches pairs of values, binding x to the first component of the pair. The second component is matched with a wildcard pattern. The pattern x :: y :: xs matches lists of length ≥2, binding x to the list&rsquo;s first element, y to the list&rsquo;s second element, and xs to the remainder." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ldipotetjob.github.io/posts/pattern_matching1-8/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-07-01T11:36:33+08:00" />
+<meta property="article:modified_time" content="2019-07-01T11:36:33+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pattern Matching"/>
+<meta name="twitter:description" content="Some examples of patterns are:
+ The pattern ex: IOException matches all instances of class IOException, binding variable ex to the instance. The pattern Some(x) matches values of the form Some(v), binding x to the argument value v of the Some constructor. The pattern (x, _) matches pairs of values, binding x to the first component of the pair. The second component is matched with a wildcard pattern. The pattern x :: y :: xs matches lists of length ≥2, binding x to the list&rsquo;s first element, y to the list&rsquo;s second element, and xs to the remainder."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Pattern Matching</title>
+	<link rel="stylesheet" href="https://ldipotetjob.github.io/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://ldipotetjob.github.io">No more than One Hundred and Sixty Six</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://ldipotetjob.github.io/posts/">Posts</a>
+				<a href="https://ldipotetjob.github.io/about-nomorethan166/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/LDipotet" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://mojitoverdeintw.blogspot.com/" target="_blank" rel="noopener me" title="Blogger"><svg xmlns="http://www.w3.org/2000/svg" class="feather feather-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a><a href="https://github.com/ldipotetjob" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://ldipotetjob.github.io/posts/">Posts</a></li>
+			<li><a href="https://ldipotetjob.github.io/about-nomorethan166/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 1, 2019</span></div>
+				<h1>Pattern Matching</h1>
+			</header>
+			<div class="content">
+				<p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html">Some examples of patterns are:</a></p>
+<ol>
+<li>The pattern ex: IOException matches all instances of class  IOException, binding variable ex to the instance.</li>
+<li>The pattern Some(x) matches values of the form Some(v), binding x to the argument value v of the Some constructor.</li>
+<li>The pattern (x, _) matches pairs of values, binding x to the first component of the pair. The second component is matched with a wildcard pattern.</li>
+<li>The pattern x :: y :: xs matches lists of length ≥2, binding x to the list&rsquo;s first element, y to the list&rsquo;s second element, and xs to the remainder.</li>
+<li>The pattern 1 | 2 | 3 matches the integers between 1 and 3.</li>
+</ol>
+<hr>
+<p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html#variable-patterns">Variable Patterns:</a></p>
+<blockquote>
+<p>SimplePattern   ::=  ‘_’<br>
+|  varid</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">scala</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">Random</span>
+<span class="nx">val</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">Int</span> <span class="o">=</span> <span class="nx">Random</span><span class="p">.</span><span class="nx">nextInt</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nx">x</span> <span class="nx">match</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="mi">0</span> <span class="p">=&gt;</span> <span class="s2">&#34;zero&#34;</span>
+  <span class="k">case</span> <span class="mi">1</span> <span class="p">=&gt;</span> <span class="s2">&#34;one&#34;</span>
+  <span class="k">case</span> <span class="mi">2</span> <span class="p">=&gt;</span> <span class="s2">&#34;two&#34;</span>
+  <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="s2">&#34;many&#34;</span>
+<span class="p">}</span>
+<span class="c1">// the result can be any value is a random function
+</span><span class="c1"></span>
+<span class="nx">def</span> <span class="nx">matchTest</span><span class="p">(</span><span class="nx">x</span><span class="o">:</span> <span class="nx">Int</span><span class="p">)</span><span class="o">:</span> <span class="nb">String</span> <span class="o">=</span> <span class="nx">x</span> <span class="nx">match</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="mi">1</span> <span class="p">=&gt;</span> <span class="s2">&#34;one&#34;</span>
+  <span class="k">case</span> <span class="mi">2</span> <span class="p">=&gt;</span> <span class="s2">&#34;two&#34;</span>
+  <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="s2">&#34;many&#34;</span>
+<span class="p">}</span>
+<span class="nx">matchTest</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">//res1: String = many
+</span><span class="c1"></span><span class="nx">matchTest</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">//res2: String = one
+</span></code></pre></div><p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html#typed-patterns">Typed Patterns:</a></p>
+<blockquote>
+<p>Pattern1        ::=  varid ‘:’ TypePat<br>
+|  ‘_’ ‘:’ TypePat</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">val</span> <span class="nx">mystrType</span><span class="o">:</span> <span class="nb">String</span> <span class="o">=</span> <span class="s2">&#34;String value for Pattern matching&#34;</span>
+
+<span class="nx">mystrType</span> <span class="nx">match</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">tmpstrValue</span><span class="o">:</span><span class="nb">String</span><span class="p">=&gt;</span><span class="nx">s</span><span class="s2">&#34;String value: $tmpstrValue&#34;</span>
+  <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="s2">&#34;Any other str value&#34;</span>
+<span class="p">}</span>
+
+<span class="nx">val</span> <span class="nx">testListType</span><span class="o">:</span><span class="nx">List</span><span class="p">[</span><span class="nx">Int</span><span class="p">]</span> <span class="o">=</span> <span class="nx">List</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nx">testListType</span> <span class="nx">match</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">tmpListIntValue</span><span class="o">:</span><span class="nx">List</span><span class="p">[</span><span class="nx">Int</span><span class="p">]=&gt;</span> <span class="nx">s</span><span class="s2">&#34;List[Int] value: $tmpListIntValue&#34;</span>
+  <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="s2">&#34;No list[Int] Type&#34;</span>
+<span class="p">}</span>
+
+<span class="nx">testListType</span> <span class="nx">match</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">tmpListgenericValue</span><span class="o">:</span><span class="nx">List</span><span class="p">[</span><span class="mi">_</span><span class="p">]=&gt;</span> <span class="nx">s</span><span class="s2">&#34;List[_] generic value: $tmpListgenericValue&#34;</span>
+  <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="s2">&#34;No list[Int] Type&#34;</span>
+<span class="p">}</span>
+
+<span class="c1">// mystrType: String = String value for Pattern matching
+</span><span class="c1">// res3: String = String value: String value for Pattern matching
+</span><span class="c1"></span>
+</code></pre></div><p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html#pattern-binders">Pattern Binders:</a></p>
+<blockquote>
+<p>Pattern2        ::=  varid ‘@’ Pattern3</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+</span><span class="cm">  *   
+</span><span class="cm">  *   is very useful is the var tha you want to match can have different type of values and
+</span><span class="cm">  *   at the same time you need to discriminate de type and process its values at the same time
+</span><span class="cm">  *   A pattern binder x@p consists of a pattern variable x and a pattern p.
+</span><span class="cm">  *   The type of the variable x is the static type T of the pattern p.
+</span><span class="cm">  *   Is very important to KNOW that this pattern matches any value v matched by the pattern p, provided the
+</span><span class="cm">  *   run-time type of v is also an instance of T, and it binds the variable name to that value.
+</span><span class="cm">  *
+</span><span class="cm">  */</span>
+
+<span class="nx">val</span> <span class="nx">testListBinding</span><span class="o">:</span><span class="nx">List</span><span class="p">[</span><span class="nx">Int</span><span class="p">]</span> <span class="o">=</span> <span class="nx">List</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nx">testListBinding</span> <span class="nx">match</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">testingList</span><span class="err">@</span><span class="nx">List</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">_</span><span class="o">*</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">s</span><span class="s2">&#34;list start with1, we&#39;re testing binging with this list:$testingList&#34;</span>
+  <span class="k">case</span> <span class="nx">testingList</span><span class="err">@</span><span class="nx">List</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">_</span><span class="o">*</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">s</span><span class="s2">&#34;list start with3, we&#39;re testing binging with this list:$testingList&#34;</span>
+  <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="s2">&#34; nothing match  binding&#34;</span>
+<span class="p">}</span>
+
+<span class="c1">// testListBinding: List[Int] = List(1, 2, 3, 4)
+</span><span class="c1">// res3: String = list start with1, we&#39;re testing binging with this list:List(1, 2, 3, 4)
+</span><span class="c1"></span>
+<span class="nx">val</span> <span class="nx">optBindingStrval</span><span class="o">:</span><span class="nb">String</span> <span class="o">=</span> <span class="s2">&#34;Testing scala specification&#34;</span>
+<span class="nx">val</span> <span class="nx">optbinding</span><span class="o">:</span> <span class="nx">Option</span><span class="p">[</span><span class="nb">String</span><span class="p">]</span> <span class="o">=</span> <span class="nx">Some</span><span class="p">(</span><span class="nx">optBindingStrval</span><span class="p">)</span>
+
+<span class="nx">optbinding</span> <span class="nx">match</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">optbinding</span><span class="err">@</span><span class="nx">Some</span><span class="p">(</span><span class="nx">optStrValue</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">optbinding</span><span class="p">.</span><span class="nx">getOrElse</span><span class="p">(</span><span class="s2">&#34;wrong value&#34;</span><span class="p">)</span>
+  <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span><span class="s2">&#34;no optStrValue&#34;</span>
+<span class="p">}</span>
+
+</code></pre></div><p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html#literal-patterns">Literal Patterns:</a></p>
+<blockquote>
+<p>SimplePattern   ::=  StableId</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">val</span> <span class="nx">literalPattern</span><span class="o">:</span> <span class="nx">Any</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="nx">literalPattern</span> <span class="nx">match</span> <span class="p">{</span>
+
+  <span class="k">case</span> <span class="mi">0</span> <span class="p">=&gt;</span> <span class="s2">&#34;zero&#34;</span>
+  <span class="k">case</span> <span class="kc">true</span> <span class="p">=&gt;</span> <span class="s2">&#34;&#34;</span>
+
+<span class="p">}</span>
+</code></pre></div><p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html#stable-identifier-patterns">Stable Identifier Patterns:</a></p>
+<blockquote>
+<p>SimplePattern   ::=  StableId</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">def</span> <span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="o">:</span> <span class="nx">Int</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">Int</span><span class="p">)</span> <span class="o">=</span> <span class="nx">x</span> <span class="nx">match</span> <span class="p">{</span>
+
+  <span class="cm">/**
+</span><span class="cm">    * in this case y =&gt; s&#34;$x and $y are equals&#34;
+</span><span class="cm">    * the other cases are unreachable because always match with y
+</span><span class="cm">    */</span>
+
+  <span class="k">case</span> <span class="sb">`y`</span> <span class="p">=&gt;</span> <span class="nx">s</span><span class="s2">&#34;$x and $y are equals&#34;</span>
+  <span class="k">case</span>  <span class="mi">_</span>  <span class="p">=&gt;</span> <span class="s2">&#34;x and y are not equals&#34;</span>
+<span class="p">}</span>
+
+<span class="nx">f</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// res9: String = 5 and 5 are equals
+</span><span class="c1"></span>
+<span class="nx">f</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c1">// res10: String = x and y are not equals
+</span><span class="c1"></span>
+<span class="nx">def</span> <span class="nx">mMatch</span><span class="p">(</span><span class="nx">s</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span><span class="nx">target</span><span class="o">:</span> <span class="nb">String</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">s</span> <span class="nx">match</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="sb">`target`</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="s2">&#34;It was &#34;</span> <span class="o">+</span> <span class="nx">target</span><span class="p">)</span>
+    <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="s2">&#34;It was something else&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">mMatch</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>  <span class="c1">// It was something else
+</span><span class="c1"></span>
+<span class="nx">def</span> <span class="nx">mMatchrefactored</span><span class="p">(</span><span class="nx">s</span><span class="o">:</span> <span class="nb">String</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">val</span> <span class="nx">target</span><span class="o">:</span> <span class="nb">String</span> <span class="o">=</span> <span class="s2">&#34;a&#34;</span>
+  <span class="nx">val</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">target</span>
+  <span class="nx">s</span> <span class="nx">match</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="sb">`x`</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="s2">&#34;It was &#34;</span> <span class="o">+</span> <span class="nx">target</span><span class="p">)</span>
+    <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="s2">&#34;It was something else&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">mMatchrefactored</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">)</span>
+
+<span class="c1">// It was a
+</span><span class="c1">// res12: Unit = ()
+</span><span class="c1"></span>
+</code></pre></div><p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html#constructor-patterns">Constructor Patterns:</a></p>
+<blockquote>
+<p>SimplePattern   ::=  StableId ‘(’ [Patterns] ‘)’</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+</span><span class="cm">  * there are better implementations for these examples but the main idea is the explanation
+</span><span class="cm">  * of this pattern as easy as possible
+</span><span class="cm">  */</span>
+
+<span class="k">case</span> <span class="kr">class</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="nb">String</span><span class="p">,</span><span class="nx">age</span><span class="o">:</span><span class="nx">Int</span><span class="p">,</span><span class="nx">birtdate</span><span class="o">:</span><span class="nb">String</span><span class="p">)</span>
+
+<span class="k">case</span> <span class="kr">class</span> <span class="nx">Teacher</span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="nb">String</span><span class="p">,</span><span class="nx">age</span><span class="o">:</span><span class="nx">Int</span><span class="p">,</span><span class="nx">birtdate</span><span class="o">:</span><span class="nb">String</span><span class="p">)</span>
+
+<span class="nx">def</span> <span class="nx">studentOrTeacher</span><span class="p">(</span><span class="nx">person</span><span class="o">:</span> <span class="nx">Any</span><span class="p">)</span><span class="o">:</span> <span class="nx">Unit</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="nx">person</span> <span class="nx">match</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">person</span><span class="err">@</span><span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">birthdate</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;the Student:$name is $age old and born $birthdate &#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="nx">person</span><span class="err">@</span><span class="nx">Teacher</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">birthdate</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;the Teacher:$name is $age old and born $birthdate &#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="mi">_</span>  <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="s2">&#34;Could be any one, No teacher or Person&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">studentOrTeacher</span><span class="p">(</span><span class="nx">Student</span><span class="p">(</span><span class="s2">&#34;Jose Luis&#34;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="s2">&#34;28 feb 1971&#34;</span><span class="p">))</span>
+
+<span class="c1">//the Student:Jose Luis is 18 and born 28 feb 1971
+</span><span class="c1">// res13: Unit = ()
+</span><span class="c1"></span>
+
+<span class="nx">def</span> <span class="nx">studentOrTeacherVer1</span><span class="p">(</span><span class="nx">person</span><span class="o">:</span> <span class="nx">Any</span><span class="p">)</span><span class="o">:</span> <span class="nx">Unit</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="nx">person</span> <span class="nx">match</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">birthdate</span><span class="p">)=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;the Student:$name is $age old and born $person.birthdate &#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="nx">Teacher</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">birthdate</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;the Teacher:$name is $age old and born $birthdate &#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="mi">_</span>  <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="s2">&#34;Could be any one, No teacher or Person&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">studentOrTeacher</span><span class="p">(</span><span class="nx">Teacher</span><span class="p">(</span><span class="s2">&#34;Jose Luis&#34;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="s2">&#34;28 feb 1971&#34;</span><span class="p">))</span>
+<span class="nx">Teacher</span><span class="p">.</span><span class="nx">unapply</span><span class="p">(</span><span class="nx">Teacher</span><span class="p">(</span><span class="s2">&#34;Jose Luis&#34;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="s2">&#34;28 feb 1971&#34;</span><span class="p">))</span>
+
+<span class="c1">//the Teacher:Jose Luis is 18 old and born 28 feb 1971
+</span><span class="c1">//res14: Unit = ()
+</span><span class="c1"></span>
+</code></pre></div><p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html#tuple-patterns">Tuple Patterns:</a></p>
+<blockquote>
+<p>SimplePattern   ::=  ‘(’ [Patterns] ‘)’</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">
+<span class="cm">/**
+</span><span class="cm">  * For this specification you&#39;ll need to know what is Tuple in scala.
+</span><span class="cm">  * If you don&#39;t know We recommend this link: https://docs.scala-lang.org/tour/tuples.html
+</span><span class="cm">  *
+</span><span class="cm"> */</span>
+
+<span class="nx">val</span> <span class="nx">ingredient</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;Sugar&#34;</span> <span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="nx">val</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="o">=</span> <span class="nx">ingredient</span>
+<span class="nx">val</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;orange&#34;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="s2">&#34;spain&#34;</span><span class="p">)</span>
+<span class="nx">val</span> <span class="p">(</span><span class="nx">namefruit</span><span class="p">,</span> <span class="nx">amount</span><span class="p">,</span><span class="nx">origin</span><span class="p">)</span> <span class="o">=</span> <span class="nx">fruit</span>
+
+<span class="nx">def</span> <span class="nx">anyObject</span><span class="p">(</span><span class="nx">param</span><span class="o">:</span><span class="nx">Any</span><span class="p">)</span><span class="o">:</span> <span class="nx">Unit</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">param</span>  <span class="nx">match</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">amount</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;we are talking about the ingredients:$name&#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">amount</span><span class="p">,</span><span class="nx">origin</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;we are talking about the fruits:$name&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">anyObject</span><span class="p">(</span><span class="nx">fruit</span><span class="p">)</span>
+<span class="c1">// we are talking about the fruits:orange
+</span><span class="c1">// res15: Unit = ()
+</span><span class="c1"></span>
+<span class="nx">anyObject</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">)</span>
+
+<span class="c1">//we are talking about the ingredients:Sugar
+</span><span class="c1">//res16: Unit = ()
+</span><span class="c1"></span>
+</code></pre></div><p><a href="https://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html#extractor-patterns">Extractor Patterns:</a></p>
+<blockquote>
+<p>SimplePattern   ::=  StableId ‘(’ [Patterns] ‘)’</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// For a better understanding of this pattern I recommend to read the following next link:
+</span><span class="c1">// https://docs.scala-lang.org/tour/extractor-objects.html
+</span><span class="c1"></span>
+<span class="k">case</span> <span class="kr">class</span> <span class="nx">StudentVer</span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="nb">String</span><span class="p">,</span><span class="nx">age</span><span class="o">:</span><span class="nx">Int</span><span class="p">,</span><span class="nx">birtdate</span><span class="o">:</span><span class="nb">String</span><span class="p">)</span>
+
+<span class="c1">// Internally what&#39;s going on? :
+</span><span class="c1"></span>
+<span class="nx">object</span> <span class="nx">StudentVer</span><span class="p">{</span>
+  <span class="nx">def</span> <span class="nx">apply</span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="nb">String</span><span class="p">,</span><span class="nx">age</span><span class="o">:</span><span class="nx">Int</span><span class="p">,</span><span class="nx">birtdate</span><span class="o">:</span><span class="nb">String</span><span class="p">)</span><span class="o">:</span> <span class="nx">StudentVer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StudentVer</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">birtdate</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// when create en new case class
+</span><span class="c1"></span><span class="nx">val</span> <span class="nx">myFirstStudentVer</span><span class="o">:</span><span class="nx">StudentVer</span> <span class="o">=</span> <span class="nx">StudentVer</span><span class="p">(</span><span class="s2">&#34;Craig Page&#34;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s2">&#34;20 August,1999&#34;</span><span class="p">)</span>
+
+<span class="c1">// Internally, it is calling the apply method of StudentVer1 companion object to create new StudentVer1 object:
+</span><span class="c1"></span>
+<span class="nx">val</span> <span class="nx">myFirstStudentVer1</span> <span class="o">=</span> <span class="nx">StudentVer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="s2">&#34;Craig Page&#34;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s2">&#34;20 August,1999&#34;</span><span class="p">)</span>
+
+<span class="c1">// The reverse operation to Apply could be the case in which we have the case class value and we want to
+</span><span class="c1">// know its values
+</span><span class="c1"></span>
+<span class="nx">val</span> <span class="nx">mytuplaOfUnapply</span> <span class="o">=</span> <span class="nx">StudentVer</span><span class="p">.</span><span class="nx">unapply</span><span class="p">(</span><span class="nx">myFirstStudentVer1</span><span class="p">)</span>
+
+<span class="c1">//val (namestudent,age,brithdate) = StudentVer.unapply(myFirstStudentVer1)
+</span><span class="c1"></span>
+<span class="nx">mytuplaOfUnapply</span> <span class="nx">match</span> <span class="p">{</span>
+
+  <span class="k">case</span> <span class="nx">Some</span><span class="p">((</span><span class="nx">namestudent</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">brithdate</span><span class="p">))</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;Testing extractor name:$namestudent,age:$age,birthdate:$brithdate&#34;</span><span class="p">)</span>
+  <span class="k">case</span> <span class="mi">_</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="s2">&#34;nothing to show&#34;</span><span class="p">)</span>
+
+<span class="p">}</span>
+
+<span class="nx">val</span> <span class="nx">StudentVer</span><span class="p">(</span><span class="nx">nameStudentVer</span><span class="p">,</span><span class="nx">ageStudentVer</span><span class="p">,</span><span class="nx">birtdateStudentVer</span><span class="p">)</span> <span class="o">=</span> <span class="nx">myFirstStudentVer1</span>
+
+<span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;Another example testing extractor name:$nameStudentVer,age:$ageStudentVer,birthdate:$ageStudentVer&#34;</span><span class="p">)</span>
+
+<span class="nx">def</span> <span class="nx">studentOrTeacherUsingExtractors</span><span class="p">(</span><span class="nx">person</span><span class="o">:</span> <span class="nx">Any</span><span class="p">)</span><span class="o">:</span> <span class="nx">Unit</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="c1">//Pattern matching is using extractors in this point
+</span><span class="c1"></span>  <span class="nx">person</span> <span class="nx">match</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">birthdate</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;the Student:$name is $age old and born $birthdate &#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="nx">Teacher</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">birthdate</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="nx">s</span><span class="s2">&#34;the Teacher:$name is $age old and born $birthdate &#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="mi">_</span>  <span class="p">=&gt;</span> <span class="nx">println</span><span class="p">(</span><span class="s2">&#34;Could be any one, No teacher or Person&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://ldipotetjob.github.io/tags/pattern-matching">Pattern Matching</a></span><span class="tag"><a href="https://ldipotetjob.github.io/tags/spec-2.12">spec 2.12</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1132 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-07-01 04:36 &#43;0100</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://ldipotetjob.github.io/posts/pattern_matching15-17/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Pattern Matching-II</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2022 <a href="https://ldipotetjob.github.io">Luis Dipotet</a></p>
+		<p>
+			Made by <a href="https://www.scadip.com/" target="_blank" rel="noopener">scadip</a> 
+		</p>
+	</footer>
+
+
+
+	<script src="https://ldipotetjob.github.io/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

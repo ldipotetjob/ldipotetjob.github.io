@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>spec 2.12 on No more than One Hundred and Sixty Six</title>
+    <link>https://ldipotetjob.github.io/tags/spec-2.12/</link>
+    <description>Recent content in spec 2.12 on No more than One Hundred and Sixty Six</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 09 Sep 2019 11:36:33 +0800</lastBuildDate><atom:link href="https://ldipotetjob.github.io/tags/spec-2.12/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pattern Matching-I</title>
+      <link>https://ldipotetjob.github.io/posts/pattern_matching9-14/</link>
+      <pubDate>Mon, 09 Sep 2019 11:36:33 +0800</pubDate>
+      
+      <guid>https://ldipotetjob.github.io/posts/pattern_matching9-14/</guid>
+      <description>Pattern matching specification
+This post covers the following patern matching specifications:
+ Pattern Sequences. Infix Operation Patterns. Pattern Alternatives. Irrefutable Patterns.  For previuos kinds of Pattern matching specifications review this link
+ Pattern Sequences:
+ SimplePattern ::= StableId ‘(’ [Patterns ‘,’] [varid ‘@’] ‘_’ ‘*’ ‘)’
+ val testList:List[Int] = List(1,1) testList match { case List(1, _*) =&amp;gt; s&amp;#34;hello $testList&amp;#34; case _ =&amp;gt; &amp;#34; nothing match&amp;#34; } // res23: String = hello List(1, 1)  val testListbinding:List[Int] = List(1,1) testList match { case testList@List(1, _*) =&amp;gt; &amp;#34;a list beginning with 1, binding&amp;#34; case _ =&amp;gt; &amp;#34; nothing match binding&amp;#34; } // testListbinding: List[Int] = List(1, 1) // res24: String = a list beginning with 1, binding  testList match { case x @ List(1, _*) =&amp;gt; s&amp;#34;$x&amp;#34; case _ =&amp;gt; &amp;#34; nothing match binding&amp;#34; } // res25: String = List(1, 1) Infix Operation Patterns:</description>
+    </item>
+    
+    <item>
+      <title>Pattern Matching-II</title>
+      <link>https://ldipotetjob.github.io/posts/pattern_matching15-17/</link>
+      <pubDate>Mon, 09 Sep 2019 11:36:33 +0800</pubDate>
+      
+      <guid>https://ldipotetjob.github.io/posts/pattern_matching15-17/</guid>
+      <description>Pattern matching specification
+This post covers the following patern matching specifications:
+ Pattern Sequences. Infix Operation Patterns. Pattern Alternatives. Irrefutable Patterns.  For previuos kinds of Pattern matching specifications review this link
+ Pattern Sequences:
+ SimplePattern ::= StableId ‘(’ [Patterns ‘,’] [varid ‘@’] ‘_’ ‘*’ ‘)’
+ val testList:List[Int] = List(1,1) testList match { case List(1, _*) =&amp;gt; s&amp;#34;hello $testList&amp;#34; case _ =&amp;gt; &amp;#34; nothing match&amp;#34; } // res23: String = hello List(1, 1)  val testListbinding:List[Int] = List(1,1) testList match { case testList@List(1, _*) =&amp;gt; &amp;#34;a list beginning with 1, binding&amp;#34; case _ =&amp;gt; &amp;#34; nothing match binding&amp;#34; } // testListbinding: List[Int] = List(1, 1) // res24: String = a list beginning with 1, binding  testList match { case x @ List(1, _*) =&amp;gt; s&amp;#34;$x&amp;#34; case _ =&amp;gt; &amp;#34; nothing match binding&amp;#34; } // res25: String = List(1, 1) Infix Operation Patterns:</description>
+    </item>
+    
+    <item>
+      <title>Pattern Matching</title>
+      <link>https://ldipotetjob.github.io/posts/pattern_matching1-8/</link>
+      <pubDate>Mon, 01 Jul 2019 11:36:33 +0800</pubDate>
+      
+      <guid>https://ldipotetjob.github.io/posts/pattern_matching1-8/</guid>
+      <description>Some examples of patterns are:
+ The pattern ex: IOException matches all instances of class IOException, binding variable ex to the instance. The pattern Some(x) matches values of the form Some(v), binding x to the argument value v of the Some constructor. The pattern (x, _) matches pairs of values, binding x to the first component of the pair. The second component is matched with a wildcard pattern. The pattern x :: y :: xs matches lists of length ≥2, binding x to the list&amp;rsquo;s first element, y to the list&amp;rsquo;s second element, and xs to the remainder.</description>
+    </item>
+    
+  </channel>
+</rss>
